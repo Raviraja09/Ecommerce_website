@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
+import CartPage from './components/CartPage';
 
 const products = [
   {
@@ -24,37 +25,54 @@ const products = [
     image: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
   },
 ];
+
 function App() {
+  const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const handleCartButtonClick = () => {
+    setShowCart(!showCart);
+  };
+
   return (
-    <container>
+    <Container>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand>The Generics</Navbar.Brand>
-        <Button bsStyle="primary">Cart</Button>
+        <Button bsStyle="primary" onClick={handleCartButtonClick}>
+           Cart({cartItems.length})
+        </Button>
       </Navbar>
-      
+      {showCart && <CartPage items={cartItems} />}
+
+       
+
       <Navbar bg="light" variant="light">
         <Nav className="mr-auto">
           <Nav.Link href="#">Home</Nav.Link>
           <Nav.Link href="#">Store</Nav.Link>
           <Nav.Link href="#">About</Nav.Link>
         </Nav>
-      
-        
       </Navbar>
-   <Row>
+     
+
+      <Row>
         {products.map((product) => (
-            
           <Col md={4} key={product.name}>
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
             <p>${product.price}</p>
-            <Button>Add to Cart</Button>
+            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
           </Col>
         ))}
       </Row>
-      </container>
-
+      
+    </Container>
   );
 }
 export default App;
+
 

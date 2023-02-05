@@ -1,4 +1,4 @@
-const CartPage = ({ Cartitems }) => {
+const CartPage = ({ items }) => {
   return (
     <div>
       <h2>Your Cart</h2>
@@ -13,4 +13,5 @@ const CartPage = ({ Cartitems }) => {
   );
 };
 export default CartPage;
+
   
