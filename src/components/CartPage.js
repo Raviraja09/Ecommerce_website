@@ -1,3 +1,5 @@
+import React from 'react';
+
 const CartPage = ({ items }) => {
   return (
     <div>
@@ -6,6 +8,7 @@ const CartPage = ({ items }) => {
         {items.map((item) => (
           <li key={item.name}>
             {item.name} - ${item.price}
+            <button style={{ color: "red" }}>Remove</button>
           </li>
         ))}
       </ul>
@@ -13,5 +16,7 @@ const CartPage = ({ items }) => {
   );
 };
 export default CartPage;
+
+
 
   

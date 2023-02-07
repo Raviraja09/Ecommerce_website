@@ -2,30 +2,31 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
 import CartPage from './components/CartPage';
-
-const products = [
-  {
-    name: 'Product 1',
-    price: 100,
-    image: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-  },
-  {
-    name: 'Product 2',
-    price: 50,
-    image: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-  },
-  {
-    name: 'Product 3',
-    price: 70,
-    image: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-  },
-  {
-    name: 'Product 4',
-    price: 100,
-    image: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-  },
-];
-
+import { CartContextProvider } from './components/CartContext';
+    const products = [
+      {
+        name: 'Product 1',
+        price: 100,
+        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+      },
+      {
+        name: 'Product 2',
+        price: 50,
+        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+      },
+      {
+        name: 'Product 3',
+        price: 70,
+        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+      },
+      {
+        name: 'Product 4',
+        price: 100,
+        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+      },
+    ];
+    
+    
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -39,16 +40,18 @@ function App() {
   };
 
   return (
+  <CartContextProvider>
     <Container>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand>The Generics</Navbar.Brand>
-        <Button bsStyle="primary" onClick={handleCartButtonClick}>
-           Cart({cartItems.length})
-        </Button>
-      </Navbar>
+     <Navbar bg="dark" variant="dark">
+  <Navbar.Brand>The Generics</Navbar.Brand>
+  <Button bsStyle="primary" onClick={handleCartButtonClick}>
+    Cart({cartItems.length})
+  </Button>
+   </Navbar>
+
       {showCart && <CartPage items={cartItems} />}
 
-       
+
 
       <Navbar bg="light" variant="light">
         <Nav className="mr-auto">
@@ -56,11 +59,14 @@ function App() {
           <Nav.Link href="#">Store</Nav.Link>
           <Nav.Link href="#">About</Nav.Link>
         </Nav>
+
+
       </Navbar>
-     
+
 
       <Row>
         {products.map((product) => (
+
           <Col md={4} key={product.name}>
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
@@ -69,10 +75,16 @@ function App() {
           </Col>
         ))}
       </Row>
-      
+
+
     </Container>
+    
+   </CartContextProvider>
   );
 }
 export default App;
+
+
+
 
 
