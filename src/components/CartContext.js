@@ -10,7 +10,7 @@ export const CartContextProvider = ({ children }) => {
       export </CartContext.Provider>
     );
   };
-  export default CartContext;
+export default CartContext;
 
 
 
