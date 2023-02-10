@@ -1,30 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Navbar, Nav } from 'react-bootstrap';
-import CartPage from './components/CartPage';
-import { CartContextProvider } from './components/CartContext';
-    const products = [
-      {
-        name: 'Product 1',
-        price: 100,
-        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-      },
-      {
-        name: 'Product 2',
-        price: 50,
-        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-      },
-      {
-        name: 'Product 3',
-        price: 70,
-        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-      },
-      {
-        name: 'Product 4',
-        price: 100,
-        image: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-      },
-    ];
+import { NavLink,Router,Route,} from 'react-router-dom';
+
+import About from './components/About';
+import Store from './components/Store';
+import Home from './components/Home';
     
     
 function App() {
@@ -40,28 +20,16 @@ function App() {
   };
 
   return (
-  <CartContextProvider>
-    <Container>
-     <Navbar bg="dark" variant="dark">
-  <Navbar.Brand>The Generics</Navbar.Brand>
-  <Button bsStyle="primary" onClick={handleCartButtonClick}>
-    Cart({cartItems.length})
-  </Button>
-   </Navbar>
+  
+  <Container>
+      <Router>
+        <switch>
+         <Route path="/Home" component={Home} />
+         <Route path="/store" component={Store} />
+         <Route path="/about" component={About} />
+         </switch>
+      </Router>
 
-      {showCart && <CartPage items={cartItems} />}
-
-
-
-      <Navbar bg="light" variant="light">
-        <Nav className="mr-auto">
-          <Nav.Link href="#">Home</Nav.Link>
-          <Nav.Link href="#">Store</Nav.Link>
-          <Nav.Link href="#">About</Nav.Link>
-        </Nav>
-
-
-      </Navbar>
 
 
       <Row>
@@ -75,12 +43,8 @@ function App() {
           </Col>
         ))}
       </Row>
-
-
-    </Container>
-    
-   </CartContextProvider>
-  );
+      </Container>
+);
 }
 export default App;
 
