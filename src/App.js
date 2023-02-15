@@ -7,6 +7,19 @@ import Store from "./components/Store";
 import Home from "./components/Home";
 
 function App() {
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://api.example.com/data");
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <Container>
