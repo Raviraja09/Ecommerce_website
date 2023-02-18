@@ -3,7 +3,7 @@ const Store=()=>
 {
     return (
     <div>
-        <h1>sdfvjd </h1>
+        <h1>store</h1>
     </div>
     )
 }
